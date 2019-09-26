@@ -27,9 +27,19 @@ get '/:title' do
   erb :show
 end
 
+get '/:title/edit' do
+  @title = params[:title]
+  @content = page_content(@title)
+  erb :edit
+end
 post '/create' do
   #params.inspect
   save_content(params["title"], params["content"])
   redirect URI.escape("/#{params["title"]}")
+end
+
+get '/pages/:id/edit' do
+  @page = pages.find(params[:id])
+  erb :'pages/edit'
 end
 
