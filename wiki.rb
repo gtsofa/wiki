@@ -38,8 +38,9 @@ post '/create' do
   redirect URI.escape("/#{params["title"]}")
 end
 
-get '/pages/:id/edit' do
-  @page = pages.find(params[:id])
-  erb :'pages/edit'
+put '/:title' do
+  save_content(params['title'], params['content'])
+  redirect URI.escape("/#{params["title"]}")
 end
+
 
